@@ -28,10 +28,10 @@ with open(output_csv) as csv_file:
     csvreader = csv.reader(csv_file, delimiter=',')
     header = next(csvreader)
     net = []
-    months = []
+    monthslist = []
     for row in csvreader: 
         net.append(float(row[1]))
-        months.append(row[0])
+        monthslist.append(row[0])
         # print(type(row[1]))
 # print(months)
 
@@ -53,13 +53,13 @@ print(f'Average Change: $ {str(round(average, 2))}')
 GreatestIncrease = max(profitlosschange)
 # print(GreatestIncrease)
 g = profitlosschange.index(GreatestIncrease) +1
-maxmonth = months[g]
+maxmonth = monthslist[g]
 print(f'Greatest Increase in Profits: {maxmonth} $ {str(GreatestIncrease)}')
 
 GreatestDecrease = min(profitlosschange)
 # print(GreatestDecrease)
 d = profitlosschange.index(GreatestDecrease) +1
-minmonth = months[d]
+minmonth = monthslist[d]
 # print(minmonth)
 print(f'Greatest Decrease in Profits: {minmonth} $ {str(GreatestDecrease)}')
 
@@ -68,7 +68,8 @@ with open(output_csv, "w") as csvfile:
     csvwriter = csv.writer(csvfile, delimiter=',')
 
 
-    csvwriter.writerow(["Total Months: 86"])
+    csvwriter.writerow([f'Total Months: {months}'])
+
     csvwriter.writerow(["Total: $38382578"])
     csvwriter.writerow(["Average Change: $-2315.12"])
     csvwriter.writerow(["Greatest Increase in Profits: Feb-2012  $ 1926159"])
